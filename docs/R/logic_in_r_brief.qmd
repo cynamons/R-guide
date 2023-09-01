@@ -1,0 +1,156 @@
+---
+title: "R Logical Order"
+author: "Sam Cynamon"
+format: html
+---
+```{r}
+#| echo: false
+setwd("C:/Users/samuel.cynamon/OneDrive - LinQuest Corporation/Documents/MSDA/2023/STA6443/STA6443-2023")
+prof=read.csv("Data/Professor.csv", header=TRUE)
+```
+
+
+## Background
+
+Someone in STA-6443 Evening class asked if the order of the logical statements inside of a data.frame subsetting function impacted the outcome. In the scenario provided, the subset was evaluating 2 logical statements, and we were examining the difference of "&" and "|".
+
+```{r}
+prof.female = prof[prof$Gender=="Female", ]
+prof.male = prof[prof$Gender=="Male", ]
+
+prof.female.v2 = subset(prof, Gender=="Female" | SALARY < 50000)
+prof.male.v2 = subset(prof, Gender=="Male" & SALARY < 50000)
+head(prof.male.v2)
+
+```
+
+
+## R Logical Operators
+```{r message=FALSE}
+#| echo: false
+library(tidyverse)
+library(kableExtra)
+text_tbl <- data.frame(
+  Operator = c("!","&","&&","|","||","xor()","isTrue()","isFalse()"),
+  Description = c(
+    "Negation or NOT",
+    "AND, elementwise comparison",
+    "AND, evaluates left to right, proceeds only until result determined (if statements)",
+    "OR, elementwise comparison",
+    "OR, evaluates left to right, proceeds only until result determined (if statements)",
+    "elementwise exclusive OR",
+    "similar to if(conf) but may be preferable because also checks for NAs",
+    "defined analogously to isTrue()"
+  )
+)
+kbl(text_tbl) %>%
+  kable_paper() %>%
+  column_spec(column=1, width= "0.5in", bold=TRUE, border_right = TRUE) %>%
+  column_spec(column=2, width = "3in")
+
+```
+
+
+
+### What does elementwise mean?
+When the logical statement will operate element-by-element on logical arrays (of corresponding elements in each vector)
+
+Plain English: when given two lists to compare it will do that for each paired item in that list
+
+### When do I use & versus &&?
+The documentation provides the best explanation. Use the double character && for if statements, and use the elementwise operators & for data subsetting or comparisons.
+
+# R Logic Details
+zero = FALSE
+non-zero = TRUE
+the elementwise evaluations are applied bitwise on raw vectors (so ! is the 1s-compliment)
+
+NA can be evaluated, result will be NA if outcome is ambiguous
+```{r}
+print(NA & TRUE)
+print(NA & FALSE)
+```
+
+
+## R Precedence
+"Unlike many other languages (including S) the AND and OR operators do not have the same precedence (the AND operators have higher precedence than the OR operators)."
+
+### What does this mean?
+R uses a similar 'layering' of precedence to its logical operators as our arithmetic operators, for example PEMDAS:
+(1) Parenthesis
+(2) Exponents
+(2) Multiplication & Division
+(4) Addition & Subtraction
+
+Just like when the compiler evaluates our mathematical statements in order, it will also execute AND before OR statements.
+
+### When does order matter?
+In our previous example order does not matter, in class we only discussed and had examples of single and double logic statements, combined by a single operator.
+
+Order will matter when there are more than 2 logical statements.
+```{r}
+print(TRUE && TRUE || FALSE) # = TRUE
+print(TRUE || FALSE && TRUE) # = TRUE?? BUG in my Code, fix later
+```
+Both statements return TRUE, but the intent of the dev was that the second line would evaluate to FALSE. Or in the case of our example from class we may want to be very specific with how we subset data.
+
+*Note: while these are being demonstrated in single line examples, this still holds true for multi-line sequential step logical statements, that being the order does matter if we have more than 2 logical statements on the same data.
+Such as: nesting if statements, or iterative subsets of a data.frame
+
+
+## Another way to look at Logic Precedence
+For those who may not be quite as familiar with precedence from other languages, or had a chance to learn it the hard way (from many frustrating reruns of a debugger).
+
+One of the ways that was helpful to me was when I was learning it for binary programming. 
+AND = multiplication
+OR = addition
+
+Then apply similar rules to PEMDAS when evaluating a logical statement:
+
+TRUE && (FALSE || FALSE) && TRUE = FALSE
+
+could also read as
+
+1 * ( 0 + 0 ) * 1 = 0
+
+and 0 = FALSE
+
+One of the other ways we can influence the precedence is by inserting parenthesis to override the AND vs OR rule and force a relationship to evaluate first.
+
+## Back to the original data, and subsetting a data.frame
+In class we looked at subsetting two columns of the data, prof. But say we wanted to combine those to statements to look at males with a salary over 50,000 and females with a salary less than or equal to 50,000. 
+
+One option would be two separate subsets that are then appended together:
+
+```{r}
+prof.female.low = subset(prof, Gender=="Female" & SALARY <= 50000)
+prof.male.high = subset(prof, Gender=="Male" & SALARY > 50000)
+prof.appended = rbind(prof.female.low, prof.male.high)
+dim(prof.appended)
+```
+
+Alternatively, we could also preform the same logic in a single subset.
+```{r}
+prof.appended.v2 = subset(prof, Gender=="Female" & SALARY <= 50000 | Gender=="Male" & SALARY > 50000)
+dim(prof.appended.v2)
+```
+
+In this scenario we do not need any parenthesis, because our focus is on the relation ships between Gender and Salary. Order, in this case matters, but still not around the & operator (similar to the original explanation in class).
+
+It may also help to force ourselves to think about where we would put parenthesis if we had to use them:
+(Gender=="Female" & SALARY <= 50000) | (Gender=="Male" & SALARY > 50000)
+
+With the parenthesis in place, hopefully this better reinforces the order that Gender and Salary arguments could be swapped and even the Male to Female arguments around the Or could be swapped, but they cannot be mixed around without confusing which Salary applies to which Gender.
+
+## Conclusion
+
+*The order of logical statements does matter in R, but only when the number of statements or steps exceeds 2. 
+
+*We have many different operators and knowing the differences between the intended functions can help reduce confusion when coding.
+
+*There are a plethora of tips and tricks for analyzing and simplifying logical operations, arithmetically is just one way that may appeal to folks who are familiar with PEMDAS.
+
+*Sometimes forcing ourselves to place the parenthesis into statements can reinforce where the emphasis on order matters.
+
+## References
+[“R Logical Operators.” Center for Astrostatistics, Pennsylvania State University. Accessed Sept. 2023.](https://astrostatistics.psu.edu/su07/R/html/base/html/Logic.html)
