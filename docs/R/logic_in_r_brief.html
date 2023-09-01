@@ -240,17 +240,20 @@ The elementwise evaluations are applied bitwise on raw vectors (so ! is the 1s-c
 <section id="another-way-to-look-at-logic-precedence" class="level2">
 <h2 class="anchored" data-anchor-id="another-way-to-look-at-logic-precedence">Another way to look at Logic Precedence</h2>
 <p>For those who may not be quite as familiar with precedence from other languages, or had a chance to learn it the hard way (from many frustrating reruns of a debugger).</p>
-<p>One of the ways that was helpful to me was when I was learning it for binary programming. AND = multiplication OR = addition</p>
+<p>One of the ways that was helpful to me was when I was learning it for binary programming.<br>
+AND = multiplication<br>
+OR = addition<br>
+</p>
 <p>Then apply similar rules to PEMDAS when evaluating a logical statement:</p>
 <p>TRUE &amp;&amp; (FALSE || FALSE) &amp;&amp; TRUE = FALSE</p>
 <p>could also read as</p>
 <p>1 * ( 0 + 0 ) * 1 = 0</p>
 <p>and 0 = FALSE</p>
-<p>One of the other ways we can influence the precedence is by inserting parenthesis to override the AND vs OR rule and force a relationship to evaluate first.</p>
+<p>Just like in PEMDAS by inserting parenthesis we now preform the same rules but within the parenthesis first then proceed to outside arguments, and the same goes for logical statements to override the AND vs OR rule and force a relationship to evaluate in a different order.</p>
 </section>
 <section id="back-to-the-original-data-and-subsetting-a-data.frame" class="level2">
 <h2 class="anchored" data-anchor-id="back-to-the-original-data-and-subsetting-a-data.frame">Back to the original data, and subsetting a data.frame</h2>
-<p>In class we looked at subsetting two columns of the data, prof. But say we wanted to combine those to statements to look at males with a salary over 50,000 and females with a salary less than or equal to 50,000.</p>
+<p>In class we looked at subsetting two columns of the data, Professor.csv. But say we wanted to combine those to statements to look at males with a salary over 50,000 and females with a salary less than or equal to 50,000.</p>
 <p>One option would be two separate subsets that are then appended together:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>prof.female.low <span class="ot">=</span> <span class="fu">subset</span>(prof, Gender<span class="sc">==</span><span class="st">"Female"</span> <span class="sc">&amp;</span> SALARY <span class="sc">&lt;=</span> <span class="dv">50000</span>)</span>
@@ -271,7 +274,7 @@ The elementwise evaluations are applied bitwise on raw vectors (so ! is the 1s-c
 </div>
 <p>In this scenario we do not need any parenthesis, because our focus is on the relation ships between Gender and Salary. Order, in this case matters, but still not around the &amp; operator (similar to the original explanation in class).</p>
 <p>It may also help to force ourselves to think about where we would put parenthesis if we had to use them: (Gender==“Female” &amp; SALARY &lt;= 50000) | (Gender==“Male” &amp; SALARY &gt; 50000)</p>
-<p>With the parenthesis in place, hopefully this better reinforces the order that Gender and Salary arguments could be swapped and even the Male to Female arguments around the Or could be swapped, but they cannot be mixed around without confusing which Salary applies to which Gender.</p>
+<p>With the parenthesis in place, hopefully this better reinforces the order that Gender and Salary arguments could be swapped and even the Male to Female arguments around the | could be swapped, but they cannot be mixed around without confusing which Salary condition applies to which Gender.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>

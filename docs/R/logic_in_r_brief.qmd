@@ -104,9 +104,9 @@ Such as: nesting if statements, or iterative subsets of a data.frame
 ## Another way to look at Logic Precedence
 For those who may not be quite as familiar with precedence from other languages, or had a chance to learn it the hard way (from many frustrating reruns of a debugger).
 
-One of the ways that was helpful to me was when I was learning it for binary programming. 
-AND = multiplication
-OR = addition
+One of the ways that was helpful to me was when I was learning it for binary programming.\
+AND = multiplication\
+OR = addition\
 
 Then apply similar rules to PEMDAS when evaluating a logical statement:
 
@@ -118,10 +118,10 @@ could also read as
 
 and 0 = FALSE
 
-One of the other ways we can influence the precedence is by inserting parenthesis to override the AND vs OR rule and force a relationship to evaluate first.
+Just like in PEMDAS by inserting parenthesis we now preform the same rules but within the parenthesis first then proceed to outside arguments, and the same goes for logical statements to override the AND vs OR rule and force a relationship to evaluate in a different order.
 
 ## Back to the original data, and subsetting a data.frame
-In class we looked at subsetting two columns of the data, prof. But say we wanted to combine those to statements to look at males with a salary over 50,000 and females with a salary less than or equal to 50,000. 
+In class we looked at subsetting two columns of the data, Professor.csv. But say we wanted to combine those to statements to look at males with a salary over 50,000 and females with a salary less than or equal to 50,000. 
 
 One option would be two separate subsets that are then appended together:
 
@@ -143,7 +143,7 @@ In this scenario we do not need any parenthesis, because our focus is on the rel
 It may also help to force ourselves to think about where we would put parenthesis if we had to use them:
 (Gender=="Female" & SALARY <= 50000) | (Gender=="Male" & SALARY > 50000)
 
-With the parenthesis in place, hopefully this better reinforces the order that Gender and Salary arguments could be swapped and even the Male to Female arguments around the Or could be swapped, but they cannot be mixed around without confusing which Salary applies to which Gender.
+With the parenthesis in place, hopefully this better reinforces the order that Gender and Salary arguments could be swapped and even the Male to Female arguments around the | could be swapped, but they cannot be mixed around without confusing which Salary condition applies to which Gender.
 
 ## Conclusion
 
