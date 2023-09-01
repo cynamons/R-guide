@@ -42,7 +42,7 @@ text_tbl <- data.frame(
     "OR, elementwise comparison",
     "OR, evaluates left to right, proceeds only until result determined (if statements)",
     "elementwise exclusive OR",
-    "similar to if(conf) but may be preferable because also checks for NAs",
+    "similar to if(cond) but may be preferable because also checks for NAs",
     "defined analogously to isTrue()"
   )
 )
@@ -58,7 +58,7 @@ kbl(text_tbl) %>%
 ### What does elementwise mean?
 When the logical statement will operate element-by-element on logical arrays (of corresponding elements in each vector).\
 
-Plain English: when given two lists to compare it will do that for each paired item in that list
+Plain English: when given two vectors (lists/arrays/etc.) to compare it will do that for each paired item in those vectors. 
 
 ### When do I use & versus &&?
 The documentation provides the best explanation. Use the double character && for if statements, and use the elementwise operators & for data subsetting or comparisons.
@@ -79,11 +79,11 @@ print(NA & FALSE)
 "Unlike many other languages (including S) the AND and OR operators do not have the same precedence (the AND operators have higher precedence than the OR operators)."
 
 ### What does this mean?
-R uses a similar 'layering' of precedence to its logical operators as our arithmetic operators, for example PEMDAS:
-(1) Parenthesis
-(2) Exponents
-(2) Multiplication & Division
-(4) Addition & Subtraction
+R uses a similar 'layering' of precedence to its logical operators as our arithmetic operators, for example PEMDAS:\
+(1) Parenthesis\
+(2) Exponents\
+(2) Multiplication & Division\
+(4) Addition & Subtraction\
 
 Just like when the compiler evaluates our mathematical statements in order, it will also execute AND before OR statements.
 
@@ -95,7 +95,7 @@ Order will matter when there are more than 2 logical statements.
 print(TRUE && TRUE || FALSE) # = TRUE
 print(TRUE || FALSE && TRUE) # = TRUE?? BUG in my Code, fix later
 ```
-Both statements return TRUE, but the intent of the dev was that the second line would evaluate to FALSE. Or in the case of our example from class we may want to be very specific with how we subset data.
+Both statements return TRUE, but the intent of the programmer was that the second line would evaluate to FALSE. Or in the case of our example from class we may want to be very specific with how we subset data to get male and female salary ranges (see the [example below](#ExampleOfOrder)).
 
 *Note: while these are being demonstrated in single line examples, this still holds true for multi-line sequential step logical statements, that being the order does matter if we have more than 2 logical statements on the same data.
 Such as: nesting if statements, or iterative subsets of a data.frame
@@ -120,8 +120,8 @@ and 0 = FALSE
 
 Just like in PEMDAS by inserting parenthesis we now preform the same rules but within the parenthesis first then proceed to outside arguments, and the same goes for logical statements to override the AND vs OR rule and force a relationship to evaluate in a different order.
 
-## Back to the original data, and subsetting a data.frame
-In class we looked at subsetting two columns of the data, Professor.csv. But say we wanted to combine those to statements to look at males with a salary over 50,000 and females with a salary less than or equal to 50,000. 
+## Back to the original data, and subsetting a data.frame {#ExampleOfOrder}
+In class we looked at subsetting two columns of the data, Professor.csv. But say we wanted to combine those two statements to look at males with a salary over \$50,000 and females with a salary less than or equal to \$50,000. 
 
 One option would be two separate subsets that are then appended together:
 
@@ -138,7 +138,7 @@ prof.appended.v2 = subset(prof, Gender=="Female" & SALARY <= 50000 | Gender=="Ma
 dim(prof.appended.v2)
 ```
 
-In this scenario we do not need any parenthesis, because our focus is on the relation ships between Gender and Salary. Order, in this case matters, but still not around the & operator (similar to the original explanation in class).
+In this scenario we do not need any parenthesis, because our focus is on the relationships between Gender and Salary. Order, in this case matters, but still not around the & operator (similar to the original explanation in class).
 
 It may also help to force ourselves to think about where we would put parenthesis if we had to use them:
 (Gender=="Female" & SALARY <= 50000) | (Gender=="Male" & SALARY > 50000)

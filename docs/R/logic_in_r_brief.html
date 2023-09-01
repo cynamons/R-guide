@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="what-does-elementwise-mean">What does elementwise mean?</h3>
 <p>When the logical statement will operate element-by-element on logical arrays (of corresponding elements in each vector).<br>
 </p>
-<p>Plain English: when given two lists to compare it will do that for each paired item in that list</p>
+<p>Plain English: when given two vectors (lists/arrays/etc.) to compare it will do that for each paired item in those vectors.</p>
 </section>
 <section id="when-do-i-use-versus" class="level3">
 <h3 class="anchored" data-anchor-id="when-do-i-use-versus">When do I use &amp; versus &amp;&amp;?</h3>
@@ -216,7 +216,12 @@ The elementwise evaluations are applied bitwise on raw vectors (so ! is the 1s-c
 <p>“Unlike many other languages (including S) the AND and OR operators do not have the same precedence (the AND operators have higher precedence than the OR operators).”</p>
 <section id="what-does-this-mean" class="level3">
 <h3 class="anchored" data-anchor-id="what-does-this-mean">What does this mean?</h3>
-<p>R uses a similar ‘layering’ of precedence to its logical operators as our arithmetic operators, for example PEMDAS: (1) Parenthesis (2) Exponents (2) Multiplication &amp; Division (4) Addition &amp; Subtraction</p>
+<p>R uses a similar ‘layering’ of precedence to its logical operators as our arithmetic operators, for example PEMDAS:<br>
+(1) Parenthesis<br>
+(2) Exponents<br>
+(2) Multiplication &amp; Division<br>
+(4) Addition &amp; Subtraction<br>
+</p>
 <p>Just like when the compiler evaluates our mathematical statements in order, it will also execute AND before OR statements.</p>
 </section>
 <section id="when-does-order-matter" class="level3">
@@ -233,7 +238,7 @@ The elementwise evaluations are applied bitwise on raw vectors (so ! is the 1s-c
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
-<p>Both statements return TRUE, but the intent of the dev was that the second line would evaluate to FALSE. Or in the case of our example from class we may want to be very specific with how we subset data.</p>
+<p>Both statements return TRUE, but the intent of the programmer was that the second line would evaluate to FALSE. Or in the case of our example from class we may want to be very specific with how we subset data to get male and female salary ranges (see the <a href="#ExampleOfOrder">example below</a>).</p>
 <p>*Note: while these are being demonstrated in single line examples, this still holds true for multi-line sequential step logical statements, that being the order does matter if we have more than 2 logical statements on the same data. Such as: nesting if statements, or iterative subsets of a data.frame</p>
 </section>
 </section>
@@ -251,9 +256,9 @@ OR = addition<br>
 <p>and 0 = FALSE</p>
 <p>Just like in PEMDAS by inserting parenthesis we now preform the same rules but within the parenthesis first then proceed to outside arguments, and the same goes for logical statements to override the AND vs OR rule and force a relationship to evaluate in a different order.</p>
 </section>
-<section id="back-to-the-original-data-and-subsetting-a-data.frame" class="level2">
-<h2 class="anchored" data-anchor-id="back-to-the-original-data-and-subsetting-a-data.frame">Back to the original data, and subsetting a data.frame</h2>
-<p>In class we looked at subsetting two columns of the data, Professor.csv. But say we wanted to combine those to statements to look at males with a salary over 50,000 and females with a salary less than or equal to 50,000.</p>
+<section id="ExampleOfOrder" class="level2">
+<h2 class="anchored" data-anchor-id="ExampleOfOrder">Back to the original data, and subsetting a data.frame</h2>
+<p>In class we looked at subsetting two columns of the data, Professor.csv. But say we wanted to combine those two statements to look at males with a salary over $50,000 and females with a salary less than or equal to $50,000.</p>
 <p>One option would be two separate subsets that are then appended together:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>prof.female.low <span class="ot">=</span> <span class="fu">subset</span>(prof, Gender<span class="sc">==</span><span class="st">"Female"</span> <span class="sc">&amp;</span> SALARY <span class="sc">&lt;=</span> <span class="dv">50000</span>)</span>
@@ -272,7 +277,7 @@ OR = addition<br>
 <pre><code>[1] 40  5</code></pre>
 </div>
 </div>
-<p>In this scenario we do not need any parenthesis, because our focus is on the relation ships between Gender and Salary. Order, in this case matters, but still not around the &amp; operator (similar to the original explanation in class).</p>
+<p>In this scenario we do not need any parenthesis, because our focus is on the relationships between Gender and Salary. Order, in this case matters, but still not around the &amp; operator (similar to the original explanation in class).</p>
 <p>It may also help to force ourselves to think about where we would put parenthesis if we had to use them: (Gender==“Female” &amp; SALARY &lt;= 50000) | (Gender==“Male” &amp; SALARY &gt; 50000)</p>
 <p>With the parenthesis in place, hopefully this better reinforces the idea that Gender and Salary arguments could be swapped, additionally the blocks of arguments around the | could be swapped, but they cannot be mixed around without consideration of which Salary condition applies to which Gender.</p>
 </section>
