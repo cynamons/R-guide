@@ -186,7 +186,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="what-does-elementwise-mean" class="level3">
 <h3 class="anchored" data-anchor-id="what-does-elementwise-mean">What does elementwise mean?</h3>
-<p>When the logical statement will operate element-by-element on logical arrays (of corresponding elements in each vector)</p>
+<p>When the logical statement will operate element-by-element on logical arrays (of corresponding elements in each vector).<br>
+</p>
 <p>Plain English: when given two lists to compare it will do that for each paired item in that list</p>
 </section>
 <section id="when-do-i-use-versus" class="level3">
@@ -196,7 +197,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="r-logic-details" class="level1">
 <h1>R Logic Details</h1>
-<p>zero = FALSE non-zero = TRUE the elementwise evaluations are applied bitwise on raw vectors (so ! is the 1s-compliment)</p>
+<p>zero = FALSE<br>
+non-zero = TRUE<br>
+The elementwise evaluations are applied bitwise on raw vectors (so ! is the 1s-compliment)</p>
 <p>NA can be evaluated, result will be NA if outcome is ambiguous</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="cn">NA</span> <span class="sc">&amp;</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -272,10 +275,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>*The order of logical statements does matter in R, but only when the number of statements or steps exceeds 2.</p>
-<p>*We have many different operators and knowing the differences between the intended functions can help reduce confusion when coding.</p>
-<p>*There are a plethora of tips and tricks for analyzing and simplifying logical operations, arithmetically is just one way that may appeal to folks who are familiar with PEMDAS.</p>
-<p>*Sometimes forcing ourselves to place the parenthesis into statements can reinforce where the emphasis on order matters.</p>
+<ul>
+<li><p>The order of logical statements does matter in R, but only when the number of statements or steps exceeds 2.</p></li>
+<li><p>We have many different operators and knowing the differences between the intended functions can help reduce confusion when coding.</p></li>
+<li><p>There are a plethora of tips and tricks for analyzing and simplifying logical operations, arithmetically is just one way that may appeal to folks who are familiar with PEMDAS.</p></li>
+<li><p>Sometimes forcing ourselves to place the parenthesis into statements can reinforce where the emphasis on order matters.</p></li>
+</ul>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>

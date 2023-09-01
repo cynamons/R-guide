@@ -56,7 +56,7 @@ kbl(text_tbl) %>%
 
 
 ### What does elementwise mean?
-When the logical statement will operate element-by-element on logical arrays (of corresponding elements in each vector)
+When the logical statement will operate element-by-element on logical arrays (of corresponding elements in each vector).\
 
 Plain English: when given two lists to compare it will do that for each paired item in that list
 
@@ -64,9 +64,9 @@ Plain English: when given two lists to compare it will do that for each paired i
 The documentation provides the best explanation. Use the double character && for if statements, and use the elementwise operators & for data subsetting or comparisons.
 
 # R Logic Details
-zero = FALSE
-non-zero = TRUE
-the elementwise evaluations are applied bitwise on raw vectors (so ! is the 1s-compliment)
+zero = FALSE\
+non-zero = TRUE\
+The elementwise evaluations are applied bitwise on raw vectors (so ! is the 1s-compliment)
 
 NA can be evaluated, result will be NA if outcome is ambiguous
 ```{r}
@@ -147,13 +147,13 @@ With the parenthesis in place, hopefully this better reinforces the order that G
 
 ## Conclusion
 
-*The order of logical statements does matter in R, but only when the number of statements or steps exceeds 2. 
+* The order of logical statements does matter in R, but only when the number of statements or steps exceeds 2. 
 
-*We have many different operators and knowing the differences between the intended functions can help reduce confusion when coding.
+* We have many different operators and knowing the differences between the intended functions can help reduce confusion when coding.
 
-*There are a plethora of tips and tricks for analyzing and simplifying logical operations, arithmetically is just one way that may appeal to folks who are familiar with PEMDAS.
+* There are a plethora of tips and tricks for analyzing and simplifying logical operations, arithmetically is just one way that may appeal to folks who are familiar with PEMDAS.
 
-*Sometimes forcing ourselves to place the parenthesis into statements can reinforce where the emphasis on order matters.
+* Sometimes forcing ourselves to place the parenthesis into statements can reinforce where the emphasis on order matters.
 
 ## References
 [“R Logical Operators.” Center for Astrostatistics, Pennsylvania State University. Accessed Sept. 2023.](https://astrostatistics.psu.edu/su07/R/html/base/html/Logic.html)
