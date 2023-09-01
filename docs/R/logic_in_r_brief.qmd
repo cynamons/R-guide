@@ -1,6 +1,7 @@
 ---
 title: "R Logical Order"
 author: "Sam Cynamon"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
 format: html
 ---
 ```{r}
@@ -12,7 +13,7 @@ prof=read.csv("Data/Professor.csv", header=TRUE)
 
 ## Background
 
-Someone in STA-6443 Evening class asked if the order of the logical statements inside of a data.frame subsetting function impacted the outcome. In the scenario provided, the subset was evaluating 2 logical statements, and we were examining the difference of "&" and "|".
+Someone in the STA-6443 Evening class asked if the order of the logical statements inside of a data.frame subsetting function impacted the outcome. In the scenario provided, the subset was evaluating 2 logical statements, and we were examining the difference of "&" and "|".
 
 ```{r}
 prof.female = prof[prof$Gender=="Female", ]
@@ -23,7 +24,9 @@ prof.male.v2 = subset(prof, Gender=="Male" & SALARY < 50000)
 head(prof.male.v2)
 
 ```
+The conclusion in class was that for this subset it did not matter because you could place the arguments of Gender and Salary on either side of a logical operator and it would provide an equivalent result.
 
+However, going forward we may see more complex logic in our need to work with big data.
 
 ## R Logical Operators
 ```{r message=FALSE}
