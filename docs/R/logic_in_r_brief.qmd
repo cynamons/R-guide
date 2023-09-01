@@ -143,7 +143,7 @@ In this scenario we do not need any parenthesis, because our focus is on the rel
 It may also help to force ourselves to think about where we would put parenthesis if we had to use them:
 (Gender=="Female" & SALARY <= 50000) | (Gender=="Male" & SALARY > 50000)
 
-With the parenthesis in place, hopefully this better reinforces the order that Gender and Salary arguments could be swapped and even the Male to Female arguments around the | could be swapped, but they cannot be mixed around without confusing which Salary condition applies to which Gender.
+With the parenthesis in place, hopefully this better reinforces the idea that Gender and Salary arguments could be swapped, additionally the blocks of arguments around the | could be swapped, but they cannot be mixed around without consideration of which Salary condition applies to which Gender.
 
 ## Conclusion
 
