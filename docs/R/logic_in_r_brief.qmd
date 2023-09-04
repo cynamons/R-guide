@@ -1,7 +1,7 @@
 ---
 title: "R Logical Order"
 author: "Sam Cynamon"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "September 1, 2023"
 format: html
 ---
 ```{r}
@@ -26,7 +26,7 @@ head(prof.male.v2)
 ```
 The conclusion in class was that for this subset it did not matter because you could place the arguments of Gender and Salary on either side of a logical operator and it would provide an equivalent result.
 
-However, going forward we may see more complex logic in our need to work with big data.
+However, going forward we may see more complex logic in our need to work with big data.(skip to [example below](#ExampleOfOrder))
 
 ## R Logical Operators
 ```{r message=FALSE}
@@ -126,9 +126,9 @@ In class we looked at subsetting two columns of the data, Professor.csv. But say
 One option would be two separate subsets that are then appended together:
 
 ```{r}
-prof.female.low = subset(prof, Gender=="Female" & SALARY <= 50000)
 prof.male.high = subset(prof, Gender=="Male" & SALARY > 50000)
-prof.appended = rbind(prof.female.low, prof.male.high)
+prof.female.low = subset(prof, Gender=="Female" & SALARY <= 50000)
+prof.appended = rbind(prof.male.high, prof.female.low)
 dim(prof.appended)
 ```
 

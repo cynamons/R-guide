@@ -132,7 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The conclusion in class was that for this subset it did not matter because you could place the arguments of Gender and Salary on either side of a logical operator and it would provide an equivalent result.</p>
-<p>However, going forward we may see more complex logic in our need to work with big data.</p>
+<p>However, going forward we may see more complex logic in our need to work with big data.(skip to <a href="#ExampleOfOrder">example below</a>)</p>
 </section>
 <section id="r-logical-operators" class="level2">
 <h2 class="anchored" data-anchor-id="r-logical-operators">R Logical Operators</h2>
@@ -172,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td style="text-align: left; width: 0.5in; font-weight: bold; border-right: 1px solid;">isTrue()</td>
-<td style="text-align: left; width: 3in;">similar to if(conf) but may be preferable because also checks for NAs</td>
+<td style="text-align: left; width: 3in;">similar to if(cond) but may be preferable because also checks for NAs</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; width: 0.5in; font-weight: bold; border-right: 1px solid;">isFalse()</td>
@@ -261,9 +261,9 @@ OR = addition<br>
 <p>In class we looked at subsetting two columns of the data, Professor.csv. But say we wanted to combine those two statements to look at males with a salary over $50,000 and females with a salary less than or equal to $50,000.</p>
 <p>One option would be two separate subsets that are then appended together:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>prof.female.low <span class="ot">=</span> <span class="fu">subset</span>(prof, Gender<span class="sc">==</span><span class="st">"Female"</span> <span class="sc">&amp;</span> SALARY <span class="sc">&lt;=</span> <span class="dv">50000</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>prof.male.high <span class="ot">=</span> <span class="fu">subset</span>(prof, Gender<span class="sc">==</span><span class="st">"Male"</span> <span class="sc">&amp;</span> SALARY <span class="sc">&gt;</span> <span class="dv">50000</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>prof.appended <span class="ot">=</span> <span class="fu">rbind</span>(prof.female.low, prof.male.high)</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>prof.male.high <span class="ot">=</span> <span class="fu">subset</span>(prof, Gender<span class="sc">==</span><span class="st">"Male"</span> <span class="sc">&amp;</span> SALARY <span class="sc">&gt;</span> <span class="dv">50000</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>prof.female.low <span class="ot">=</span> <span class="fu">subset</span>(prof, Gender<span class="sc">==</span><span class="st">"Female"</span> <span class="sc">&amp;</span> SALARY <span class="sc">&lt;=</span> <span class="dv">50000</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>prof.appended <span class="ot">=</span> <span class="fu">rbind</span>(prof.male.high, prof.female.low)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(prof.appended)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 40  5</code></pre>
