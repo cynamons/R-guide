@@ -1,0 +1,13 @@
+---
+title: "Directory"
+author: "Sam Cynamon"
+format: html
+---
+
+## R 
+
+### Logic
+
+[R Logical Order](https://cynamons.github.io/maRker/R/logic_in_r_brief.html)\
+[De Morgan's Law in Practice]()
+
