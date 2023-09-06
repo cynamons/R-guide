@@ -1,0 +1,34 @@
+---
+title: "De Morgan's Law in Practice"
+author: "Sam Cynamon"
+date: "September 5, 2023"
+format: html
+---
+<center> \| [Sam's R Guide](https://cynamons.github.io/maRker/dir.html) | </center>
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(here)
+setwd("C:/Users/samuel.cynamon/OneDrive - LinQuest Corporation/Documents/MSDA/2023/DA6233/DA6233-2023")
+dt = read_csv("Data/tech_stocks_csv.zip")
+
+```
+
+## Background
+
+```{r original}
+filter(
+  select(dt, conm, fyear),
+  fyear == 2009 | fyear == 2023 
+)
+```
+
+```{r DE-MORGANS}
+dt %>% 
+  select(conm, fyear) %>% 
+  filter(!(fyear > 2009 & fyear < 2023))
+```
+
