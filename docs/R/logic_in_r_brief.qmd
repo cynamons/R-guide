@@ -9,7 +9,7 @@ format: html
 setwd("C:/Users/samuel.cynamon/OneDrive - LinQuest Corporation/Documents/MSDA/2023/STA6443/STA6443-2023")
 prof=read.csv("Data/Professor.csv", header=TRUE)
 ```
-<center> \| [Sam's R Guide](https://cynamons.github.io/maRker/dir.html) | </center>
+<center> \| [maRker Guide](https://cynamons.github.io/maRker/dir.html) | </center>
 
 ## Background
 
